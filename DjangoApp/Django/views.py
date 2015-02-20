@@ -25,8 +25,6 @@ def home(request):
     return HttpResponse(template.render(context))
 
 
-
-
 def index(request):
   # The current user object is available as request.user. If the
   # user is authenticated, is_authenticated() method of the User
