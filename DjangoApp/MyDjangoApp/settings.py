@@ -43,7 +43,7 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+#    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -61,11 +61,11 @@ WSGI_APPLICATION = 'MyDjangoApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysite',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': 'filab',
+        'USER': 'jameslu',
+        'PASSWORD': 'Met-Filab',
+        'HOST': 'met-filab.org',
+        'PORT': '3306'
     }
 }
 
@@ -89,5 +89,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
+    os.path.join(BASE_DIR, 'templates'),
+)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'), 
 )
