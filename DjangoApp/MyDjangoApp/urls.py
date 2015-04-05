@@ -20,4 +20,5 @@ urlpatterns = patterns('',
     url(r'register/$','Django.views.register'),
     url(r'^login/$', 'Django.views.login'),
     url(r'^sentiment/$', 'Django.views.sentiment'),
+    url(r'^g20/$', 'Django.views.g20'),
 )

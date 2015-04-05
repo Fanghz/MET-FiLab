@@ -48,6 +48,9 @@ def index(request):
 def failedbanks(request):
     return render_to_response('failedbanks.html',{})
 
+def g20(request):
+    return render_to_response('g20.html',{})
+
 def test(request):
     return render_to_response('test.html',{})
 
@@ -57,12 +60,19 @@ def stockprice(request):
         end_date = request.POST.get('endDate','')
         symbol = request.POST.get('symbol', '')
         #Stock_Price
+        firstStock = True
         stockprice = m.YahooStock.objects.filter(symbol=symbol, date__gte=start_date, date__lte=end_date)
         stocks = []
         for stock in stockprice:
-            unix_date = int(time.mktime(stock.date.timetuple())*1000)
-            stock = [unix_date,stock.open_price]
-            stocks.append(stock)
+            if firstStock == False:    
+                unix_date = int(time.mktime(stock.date.timetuple())*1000)
+                stock = [unix_date,stock.open_price]
+                stocks.append(stock)
+            else:
+                unix_date = int(time.mktime(stock.date.timetuple())*1000)
+                stock = [unix_date-1,0]
+                stocks.append(stock)
+                firstStock = False
         fp = open('static/js/stock.json','w+')
         json.dump(stocks,fp)
         fp.flush()
@@ -106,17 +116,23 @@ def stockprice(request):
             sentiments = m.AlexEquity2014.objects.filter(ticker=symbol, date__gte=start_date, date__lte=end_date)
         for item in sentiments:
             date = int(time.mktime(item.date.timetuple())*1000)
-            minute_sentiment = item.sentiment * item.confidence * item.relevance / item.novelty
+            minute_sentiment = (item.sentiment * item.confidence * item.relevance / item.novelty)*100
             if(date in senti_dict):
                 senti_dict[date] += minute_sentiment
                 count_dict[date] += 1
             else:
                 senti_dict[date] = minute_sentiment
                 count_dict[date] = 1
+        firstSent = True
         for key in sorted(senti_dict):
-            senti_dict[key] /= count_dict[key]
-            result = [key,senti_dict[key]]
-            results.append(result)
+            if firstSent == False:
+                senti_dict[key] /= count_dict[key]
+                result = [key,senti_dict[key]]
+                results.append(result)
+            else:
+                result = [key-1,0]
+                results.append(result)
+                firstSent = False
         fp = open('static/js/sentiment.json','w+')
         json.dump(results,fp)
         fp.flush()

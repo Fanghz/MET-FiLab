@@ -1,7 +1,7 @@
 $(function () {
     var seriesOptions = [],
         seriesCounter = 0,
-        names = ['stock','sentiment'],
+        names = ['sentiment','stock'],
         // create the chart when all data is loaded
         createChart = function () {
 
@@ -27,7 +27,7 @@ $(function () {
 
                 plotOptions: {
                     series: {
-                        compare: 'percent'
+                        compare: 'value'
                     }
                 },
 
