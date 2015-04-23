@@ -1,11 +1,11 @@
 $(function () {
     var seriesOptions = [],
         seriesCounter = 0,
-        names = ['sentiment','stock'],
+        names = ['indicator'],
         // create the chart when all data is loaded
         createChart = function () {
 
-            $('#container1').highcharts('StockChart', {
+            $('#container3').highcharts('StockChart', {
 
                 rangeSelector: {
                     inputEnabled: false,
@@ -14,7 +14,7 @@ $(function () {
 
                 yAxis: [{
                     title: {
-                        text: 'Daily Sentiment',
+                        text: 'AA',
                         style: {
                             color: '#7cb5ec',
                             fontWeight: 'bold'
@@ -22,7 +22,7 @@ $(function () {
                     },
                     labels: {
                         formatter: function () {
-                            return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                            return (this.value > 0 ? ' + ' : '') + this.value;
                         }
                     },
                     opposite: true,
@@ -33,7 +33,7 @@ $(function () {
                     }]
                 },{
                     title: {
-                        text: 'Daily Stock Price',
+                        text: 'BB',
                         style: {
                             color: '#434348',
                             fontWeight: 'bold'
@@ -41,7 +41,7 @@ $(function () {
                     },
                     labels: {
                         formatter: function () {
-                            return (this.value > 0 ? ' + ' : '') + this.value+ '%';
+                            return (this.value > 0 ? ' + ' : '') + this.value;
                         }
                     },
                     opposite: false,

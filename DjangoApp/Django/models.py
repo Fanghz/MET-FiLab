@@ -2189,10 +2189,10 @@ class WorldbankCountry(models.Model):
 
 class WorldbankDevindicator(models.Model):
     country = models.CharField(max_length=5)
-    series = models.CharField(max_length=100)
+    series = models.ForeignKey('WorldbankSeries')
     year = models.IntegerField()
     data = models.FloatField(blank=True, null=True)
-    rowid = models.CharField(unique=True, max_length=40)
+    rowid = models.CharField(primary_key=True,unique=True, max_length=40)
 
     class Meta:
         managed = False
@@ -2200,7 +2200,7 @@ class WorldbankDevindicator(models.Model):
 
 
 class WorldbankSeries(models.Model):
-    code = models.CharField(primary_key=True, max_length=100)
+    code = models.CharField(primary_key=True,unique=True,max_length=100)
     name = models.CharField(max_length=200, blank=True)
     short_definition = models.CharField(max_length=300, blank=True)
     source = models.CharField(max_length=200, blank=True)
