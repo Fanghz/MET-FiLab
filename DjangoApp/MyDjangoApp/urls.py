@@ -21,4 +21,8 @@ urlpatterns = patterns('',
     url(r'^login/$', 'Django.views.login'),
     url(r'^sentiment/$', 'Django.views.sentiment'),
     url(r'^g20/$', 'Django.views.g20'),
+    url(r'^gettopic/$', 'Django.views.gettopic'),
+    url(r'^getcountry/$', 'Django.views.getcountry'),
+    url(r'^indicator/$', 'Django.views.indicator'),
+    url(r'^getindicator/$', 'Django.views.getindicator'),
 )

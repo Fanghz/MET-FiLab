@@ -350,15 +350,13 @@
 
 									<div class="row-fluid">
 
-
-
 										<div class="control-group">
 
 											<label class="control-label">Data Source</label>
 
 											<div class="controls">
 
-												<select class="small m-wrap source" tabindex="1" name="datasource">
+												<select class="small m-wrap source" tabindex="1" name="datasource" onChange="getDataSource(this.value)">
 
 													<option value="yahoo">Yahoo Finance</option>
 
@@ -370,114 +368,118 @@
 
 										</div>
 
+										<div class="worldbank" style="display:none">
 
+											<div class="control-group">
 
-										<!--/span-->
-
-
-
-										<div class="control-group worldbank">
-
-											<label class="control-label">Topic</label>
-
-											<div class="controls">
-
-												<select class="small m-wrap" multiple="multiple" data-placeholder="Choose a topic" tabindex="1" name="topic">
-
-													<option value="Economic">Economic</option>
-
-													<option value="Education">Education</option>
-
-													<option value="Environment">Environment</option>
-
-													<option value="GDP">GDP</option>
-
-												</select>
-
-											</div>
-
-										</div>
-
-
-
-										<!--/span-->
-
-
-										<div class="control-group worldbank">
-
-											<label class="control-label">Country</label>
-
-											<div class="controls">
-
-												<select class="small m-wrap" tabindex="1" name="country">
-
-													<option value="AFG">Afghanistan</option>
-
-													<option value="ABW">Albania</option>
-
-													<option value="Category 3">China</option>
-
-													<option value="USA">United States</option>
-
-												</select>
-
-											</div>
-
-										</div>
-
-
-
-									</div>
-
-									<div class="control-group yahoo" >
-
-										<label class="control-label">Stock Symbol</label>
+												<label class="control-label">Topic</label>
 
 												<div class="controls">
 
-													<input type="text" class="m-wrap span3" name="symbol" placeholder="Put in Stock Name"  />
+													<select class="span9" multiple="multiple" tabindex="1" name="topic" id="selectTopic">
+
+													</select>
+
+												</div>
+												</br>
+												<div class="form-actions">
+													
+													<a href="javascript:;" class="btn blue" id="send">Click to Choose Indicators & Countries</a>
 
 												</div>
 
-									</div>
+											</div>
 
-									<div class="control-group">
+											<div class="control-group indicator" style="display:none">
 
-										<label class="control-label">Start Date</label>
+												<label class="control-label">Indicator</label>
 
-										<div class="controls">
+												<div class="controls">
 
-											<div class="input-append date date-picker " data-date="2012-01-01" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+													<select class="span9" multiple="multiple" tabindex="1" name="indicator" id="selectIndicator">
 
-												<input class="date m-wrap span12" readonly size="16" type="text" name="startDate" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
+													</select>
+
+												</div>
+
+											</div>
+
+											<div class="control-group country" style="display:none">
+
+												<label class="control-label">Country</label>
+
+												<div class="controls">
+
+													<select class="small m-wrap" multiple="multiple" tabindex="1" name="country" id="selectCountry">
+
+													</select>
+
+												</div>
+
+											</div>
+
+											<div class="form-actions worldbanksubmit" style="display:none">
+
+												<a href="javascript:;" class="btn blue" id="sendWorldbank">Submit</a>	
 
 											</div>
 
 										</div>
 
-									</div>
-									
-									<div class="control-group">
+										<div class="yahoo">
 
-										<label class="control-label">End Date</label>
+											<div class="control-group">
 
-										<div class="controls">
+												<label class="control-label">Stock Symbol</label>
 
-											<div class="input-append date date-picker" data-date="2012-01-01" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+														<div class="controls">
 
-												<input class="date m-wrap span12" readonly size="16" type="text" name="endDate" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
+															<input type="text" class="m-wrap span3" name="symbol" placeholder="Put in Stock Name"  />
+
+														</div>
+											</div>
+										
+											<div class="control-group">
+
+												<label class="control-label">Start Date</label>
+
+												<div class="controls">
+
+													<div class="input-append date date-picker " data-date="2012-01-01" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+
+														<input class="date m-wrap span12" readonly size="16" type="text" name="startDate" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
+
+													</div>
+
+												</div>
+
+											</div>
+											
+											<div class="control-group">
+
+												<label class="control-label">End Date</label>
+
+												<div class="controls">
+
+													<div class="input-append date date-picker" data-date="2012-01-01" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+
+														<input class="date m-wrap span12" readonly size="16" type="text" name="endDate" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
+
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="form-actions">
+
+												<button type="submit" class="btn blue" id="send">Submit</button>
+
+												<button type="button" class="btn">Cancel</button>                            
 
 											</div>
 
 										</div>
-
-									</div>
-
-									<div class="form-actions">
-
-										<button type="submit" class="btn blue" id="send">Submit</button>
-
-										<button type="button" class="btn">Cancel</button>                            
 
 									</div>
 
@@ -664,7 +666,7 @@
 
 								<div class="row-fluid">
 
-									<div id="container3" style="height: 400px; min-width: 310px"></div> 
+									<div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 								</div>
 
@@ -744,6 +746,16 @@
     
     <script src="/static/js/exporting.js"></script>
 
+    <script src="/static/js/get-topic.js"></script>
+
+    <script src="/static/js/get-indicator.js"></script>
+
+    <script src="/static/js/chart-indicators.js"></script>
+
+    <script src="/static/js/highcharts.js"></script>
+
+	<script src="/static/js/exporting1.js"></script>
+
 	<!--[if lt IE 9]>
 
 	<script src="/static/js/excanvas.min.js"></script>
@@ -821,6 +833,7 @@
 	<script src="/static/js/table-advanced.js"></script>   
 
 	<script src="/static/js/select-hide.js"></script>
+
 
 
 	<!-- END PAGE LEVEL SCRIPTS -->
