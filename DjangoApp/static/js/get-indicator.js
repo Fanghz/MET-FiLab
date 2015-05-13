@@ -5,6 +5,7 @@ $(function(){
 		$(".indicator").show();
 		$(".worldbanksubmit").show();
 		var topic = $('#selectTopic').val();
+		var filter = $("#filter").val();
 
 		$.getJSON('http://localhost:8000/static/js/country.json',
 			function(json){
@@ -15,22 +16,17 @@ $(function(){
 					country.options[i].value = json[i].label;
 				}
 			});
-/*
-		$.getJSON("http://localhost:8000/indicator?callback=?",
-			{ ids: [1, 2, 3], stocked: [true, false] },
-			function(data){
-				if (data["HTTPRESPONSE"] == 1){
-          			alert("success2");
-          		}
-          	}); 
-		*/
+
 		$.ajax({
 			type: "GET",
 			url: 'http://localhost:8000/indicator?callback=?',
-			data: { topics: topic},
+			data: { topics: topic,filter: filter},
 			dataType: 'json',
 			traditional: true,
 			success: function(json){
+				if($("#selectIndicator option").length>0){
+					$("#selectIndicator option").remove();
+				}
 				var indicators = document.getElementById("selectIndicator");
 				for(var i=0;i<json.length;i++){
 					indicators.options[i] = new Option();
@@ -39,5 +35,7 @@ $(function(){
 				}
           	}
 		});
+
+		$('.uitip').tooltip();
 	});
 })
