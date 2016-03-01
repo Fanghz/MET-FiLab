@@ -1,0 +1,11 @@
+MET-FiLab is a project based on Django Framework.
+
+before you run the project, 
+
+1. Make sure you installed python
+2. You did brew install mysql
+3. You did export PATH=$PATH:/usr/local/mysql/bin
+4. And finally, you did pip install MySQL-Python
+
+run ./manage.py , choose command based on your requirement.
+
